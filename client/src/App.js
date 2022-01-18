@@ -38,25 +38,27 @@ const client = new ApolloClient({
   uri: '/graphql',
 })
 
+// Custom React Hook called added as StoreProvider container
 function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
         <div>
           {/*<StoreProvider>*/}
-            <Provider>
+          <Provider store={store}>
             <Nav />
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
-              <Route exact path="/success" component={Success} />
               <Route exact path="/orderHistory" component={OrderHistory} />
               <Route exact path="/products/:id" component={Detail} />
+              <Route exact path="/success" component={Success} />
               <Route component={NoMatch} />
+              
             </Switch>
-            </Provider>
-          {/*<StoreProvider>*/}
+          </Provider>
+          {/*</StoreProvider>*/}
         </div>
       </Router>
     </ApolloProvider>
